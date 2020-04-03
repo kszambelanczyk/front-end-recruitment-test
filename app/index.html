@@ -247,7 +247,7 @@
                       </label>
                       <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="text" id="firstName">
-                        <span class="mdl-textfield__error">This field is required!</span>
+                        <span class="mdl-textfield__error" id="firstNameError"></span>
                       </div>
                     </div>
                   </div>
@@ -258,7 +258,7 @@
                       </label>
                       <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="text" id="lastName">
-                        <span class="mdl-textfield__error">This field is required!</span>
+                        <span class="mdl-textfield__error" id="lastNameError"></span>
                       </div>
                     </div>
                   </div>
@@ -269,7 +269,7 @@
                       </label>
                       <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="text" id="email">
-                        <span class="mdl-textfield__error">This field is required!</span>
+                        <span class="mdl-textfield__error" id="emailError"></span>
                       </div>
                     </div>
                   </div>
@@ -281,8 +281,8 @@
                       </label>
   
                       <div class="mdl-textfield mdl-js-textfield getmdl-select">
-                        <input type="text" value="" class="mdl-textfield__input" id="country" readonly>
-                        <input type="hidden" value="" name="country">
+                        <input type="text" value="" class="mdl-textfield__input" readonly>
+                        <input type="hidden" value="" name="country" id="country">
                         <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
                         <label for="country" class="mdl-textfield__label"></label>
                         <ul for="country" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
@@ -291,6 +291,7 @@
                             <li class="mdl-menu__item" data-val="BLR">Belarus</li>
                             <li class="mdl-menu__item" data-val="RUS">Russia</li>
                         </ul>
+                        <span class="mdl-textfield__error" id="countryError"></span>
                       </div>                  
                     </div>
                   </div>
@@ -299,8 +300,8 @@
                     <div class="form-field">
                       <label>Postal Code</label>
                       <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="postalCode">
-                        <span class="mdl-textfield__error">Input is not a number!</span>
+                        <input class="mdl-textfield__input" type="text" id="postalCode">
+                        <span class="mdl-textfield__error" id="postalCodeError"></span>
                       </div>
                     </div>
                   </div>
@@ -310,7 +311,7 @@
                       <label>Phone Number</label>
                       <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="text" id="phoneNumber">
-                        <span class="mdl-textfield__error">Input is not a number!</span>
+                        <span class="mdl-textfield__error" id="phoneNumberError"></span>
                       </div>
                     </div>
                   </div>
@@ -368,7 +369,7 @@
                           <input class="mdl-textfield__input" type="text" id="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
                           <span class="iconify card-icon" data-icon="logos:visa" data-inline="false"></span>
                         </div>
-                        <span class="mdl-textfield__error">Input is not a number!</span>
+                        <span class="mdl-textfield__error" id="cardNumberError"></span>
                       </div>
                     </div>
                   </div>
@@ -381,7 +382,7 @@
                           <input class="mdl-textfield__input" type="password" id="securityCode">
                           <span class="iconify" data-icon="ic:baseline-help-outline" data-inline="false"></span>
                         </div>
-                        <span class="mdl-textfield__error">Input is not a number!</span>
+                        <span class="mdl-textfield__error" id="securityCodeError"></span>
                       </div>
                     </div>
                   </div>
@@ -391,7 +392,7 @@
                       <label>Expiration date</label>
                       <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="text" id="expirationDate" placeholder="MM/YY">
-                        <span class="mdl-textfield__error">Input is not a number!</span>
+                        <span class="mdl-textfield__error" id="expirationDateError"></span>
                       </div>
                     </div>
                   </div>
