@@ -17,6 +17,9 @@
  *
  */
 /* eslint-env browser */
+
+import test from './checkoutForm';
+
 (function() {
   'use strict';
 
@@ -76,4 +79,5 @@
   }
 
   // Your custom JavaScript goes here
+  test();
 })();

@@ -37,6 +37,59 @@ import pkg from './package.json';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
+const rollup = require('rollup-stream');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const sourcemaps = require('gulp-sourcemaps');
+const babel = require('rollup-plugin-babel');
+const commonJs = require('rollup-plugin-commonjs');
+const resolveNodeModules = require('rollup-plugin-node-resolve');
+
+const babelConfig = {
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "external-helpers"
+  ],
+  babelrc: false
+};
+
+/**
+ * Use rollup in gulp making it compatible with streams
+ * @param {String} inputFile path to main JS file
+ * @param {Object} options configuration object containing format, basePath, und distPath
+ */
+const rollupJS = (inputFile, options) => {
+  return () => {
+    return rollup({
+      input: options.basePath + inputFile,
+      format: options.format,
+      sourcemap: options.sourcemap,
+      plugins: [
+        babel(babelConfig),
+        resolveNodeModules(),
+        commonJs(),
+      ]
+    })
+    // point to the entry file.
+    .pipe(source(inputFile, options.basePath))
+    // we need to buffer the output, since many gulp plugins don't support streams.
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    // some transformations like uglify, rename, etc.
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(options.distPath))
+    .pipe(gulp.dest(options.tempPath));
+  };
+}
+
+
 // Lint JavaScript
 gulp.task('lint', () =>
   gulp.src(['app/scripts/**/*.js','!node_modules/**'])
@@ -105,7 +158,7 @@ gulp.task('styles', () => {
 // Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
 // to enable ES2015 support remove the line `"only": "gulpfile.babel.js",` in the
 // `.babelrc` file.
-gulp.task('scripts', () =>
+gulp.task('old_scripts', () =>
     gulp.src([
       // Note: Since we are not using useref in the scripts build pipeline,
       //       you need to explicitly list your scripts here in the right order
@@ -126,6 +179,18 @@ gulp.task('scripts', () =>
       .pipe(gulp.dest('dist/scripts'))
       .pipe(gulp.dest('.tmp/scripts'))
 );
+
+/**
+ * Bundle JS files starting from main.js
+ */
+gulp.task('scripts', rollupJS('main.js', {
+  basePath: './app/scripts/',
+  format: 'iife',
+  distPath: './dist/scripts/',
+  tempPath: './.tmp/scripts/',
+  sourcemap: true
+}));
+
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', () => {

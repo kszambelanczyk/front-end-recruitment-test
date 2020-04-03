@@ -38,19 +38,23 @@
 
     <!-- Material Design icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
+    
     <!-- Material Design Lite page styles:
-    You can choose other color schemes from the CDN, more info here http://www.getmdl.io/customize/index.html
-    Format: material.color1-color2.min.css, some examples:
-    material.red-teal.min.css
-    material.blue-orange.min.css
-    material.purple-indigo.min.css
+      You can choose other color schemes from the CDN, more info here http://www.getmdl.io/customize/index.html
+      Format: material.color1-color2.min.css, some examples:
+      material.red-teal.min.css
+      material.blue-orange.min.css
+      material.purple-indigo.min.css
     -->
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
-
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    
     <!-- Your styles -->
+    <link rel="stylesheet" href="styles/getmdl-select.min.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/form.css">
+
+
+    <script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>
   </head>
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -63,12 +67,12 @@
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-          <a href="#overview" class="mdl-layout__tab is-active">Overview</a>
+          <a href="#overview" class="mdl-layout__tab">Overview</a>
           <a href="#features" class="mdl-layout__tab">Features</a>
           <a href="#features" class="mdl-layout__tab">Details</a>
           <a href="#features" class="mdl-layout__tab">Technology</a>
           <a href="#features" class="mdl-layout__tab">FAQ</a>
-          <a href="#checkout" class="mdl-layout__tab">Checkout</a>
+          <a href="#checkout" class="mdl-layout__tab is-active">Checkout</a>
           <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
             <i class="material-icons" role="presentation">add</i>
             <span class="visuallyhidden">Add</span>
@@ -76,7 +80,7 @@
         </div>
       </header>
       <main class="mdl-layout__content">
-        <div class="mdl-layout__tab-panel is-active" id="overview">
+        <div class="mdl-layout__tab-panel" id="overview">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
               <i class="material-icons">play_circle_filled</i>
@@ -230,8 +234,182 @@
           </section>
         </div>
         
-        <div class="mdl-layout__tab-panel" id="checkout">
-          ok
+        <div class="mdl-layout__tab-panel is-active form-tab" id="checkout">
+          <div class="form-container">
+            <form id="testForm">
+              <div class="container-title"><span class="title-number">1</span> Personal Information</div>
+              <div class="f-container">
+                <div class="personal-container">
+                  <div class="mdl-card mdl-shadow--2dp form-card">
+                    <div class="form-field">
+                      <label>
+                        First name
+                      </label>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="firstName">
+                        <span class="mdl-textfield__error">This field is required!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mdl-card mdl-shadow--2dp form-card">
+                    <div class="form-field">
+                      <label>
+                        Last name
+                      </label>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="lastName">
+                        <span class="mdl-textfield__error">This field is required!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mdl-card mdl-shadow--2dp form-card wide">
+                    <div class="form-field">
+                      <label>
+                        Email
+                      </label>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="email">
+                        <span class="mdl-textfield__error">This field is required!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mdl-card mdl-shadow--2dp form-card">
+  
+                    <div class="form-field">
+                      <label>
+                        Country
+                      </label>
+  
+                      <div class="mdl-textfield mdl-js-textfield getmdl-select">
+                        <input type="text" value="" class="mdl-textfield__input" id="country" readonly>
+                        <input type="hidden" value="" name="country">
+                        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                        <label for="country" class="mdl-textfield__label"></label>
+                        <ul for="country" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                            <li class="mdl-menu__item" data-val="USA">United States</li>
+                            <li class="mdl-menu__item" data-val="DEU">Germany</li>
+                            <li class="mdl-menu__item" data-val="BLR">Belarus</li>
+                            <li class="mdl-menu__item" data-val="RUS">Russia</li>
+                        </ul>
+                      </div>                  
+                    </div>
+                  </div>
+                  
+                  <div class="mdl-card mdl-shadow--2dp form-card">
+                    <div class="form-field">
+                      <label>Postal Code</label>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="postalCode">
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="mdl-card mdl-shadow--2dp form-card wide">
+                    <div class="form-field">
+                      <label>Phone Number</label>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="phoneNumber">
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="order-container">
+                  <div class="mdl-card mdl-shadow--2dp form-card order-card">
+                    <div class="order-inner">
+                      <p class="order-title">
+                        Your order
+                      </p>
+                      <div class="order-row">
+                        <span class="order-item">Apple Watch sport</span>
+                        <span class="order-price">$ 580</span>
+                      </div>
+                      <div class="order-row">
+                        <span class="order-item">Modern Buckle</span>
+                        <span class="order-price">$ 380</span>
+                      </div>
+                      <div class="order-spacer"></div>
+                      <div class="order-row">
+                        <span class="order-item">Total purchases</span>
+                        <span class="order-price">$ 960</span>
+                      </div>
+                      <div class="order-row">
+                        <span class="order-item">Estimated tax</span>
+                        <span class="order-price">$ 0</span>
+                      </div>
+                      <div class="order-spacer"></div>
+                      <div class="order-row">
+                        <span class="order-total-label">Total</span>
+                        <span class="order-total">$ 960</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    
+                
+              </div>
+              
+              <div class="container-title">
+                <span class="title-number">2</span> 
+                Payments detail
+                <span class="iconify title-lock" data-icon="bx:bxs-lock" data-inline="false"></span>
+               </div>
+  
+              <div class="s-container">
+                <div class="cc-container">
+                  
+                  <div class="mdl-card mdl-shadow--2dp form-card wide">
+                    <div class="form-field">
+                      <label>Credit Card Number</label>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <div class="input-group">
+                          <input class="mdl-textfield__input" type="text" id="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
+                          <span class="iconify card-icon" data-icon="logos:visa" data-inline="false"></span>
+                        </div>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="mdl-card mdl-shadow--2dp form-card">
+                    <div class="form-field">
+                      <label>Security code</label>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <div class="input-group">
+                          <input class="mdl-textfield__input" type="password" id="securityCode">
+                          <span class="iconify" data-icon="ic:baseline-help-outline" data-inline="false"></span>
+                        </div>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="mdl-card mdl-shadow--2dp form-card">
+                    <div class="form-field">
+                      <label>Expiration date</label>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="expirationDate" placeholder="MM/YY">
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div></div>
+  
+                <div class="btn-container">
+                  <button type="submit" class="mdl-button mdl-js-button mdl-button--raised  submit-btn">
+                    <span><span class="iconify" data-icon="bx:bxs-cart-alt" data-inline="false"></span></span> Complete purchase
+                  </button>
+                </div>
+              </div>
+            </form>
+            
+
+          </div>
+
         </div>
 
         <footer class="mdl-mega-footer">
@@ -290,7 +468,8 @@
       </main>
     </div>
 
-    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="./scripts/getmdl-select.min.js"></script>
     <!-- build:js scripts/main.min.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
